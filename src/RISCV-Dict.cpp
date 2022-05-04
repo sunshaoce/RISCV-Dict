@@ -166,7 +166,8 @@ Instruction emitInst(string Line) {
     Encodings = {Encodings[0], "rs2", "rs1", "rm", "rd", "1010011"};
 
   // Instruction
-  return Instruction{Name, Exts, Format,Actual, Description, Columns, Encodings};
+  return Instruction{Name,        Exts,    Format,   Actual,
+                     Description, Columns, Encodings};
 }
 
 int main(int Argc, const char **Argv) {
@@ -175,7 +176,13 @@ int main(int Argc, const char **Argv) {
 reload:
   unordered_map<string, Instruction> Insts;
 
+  if (Args.size() == 1)
+    Args.push_back("Instructions.csv");
   ifstream InstFile(Args[1]);
+  if (InstFile.fail()) {
+    cerr << "ERROR: can't find file " << Args[1] << endl;
+    return 1;
+  }
   string Line;
   getline(InstFile, Line);
   while (getline(InstFile, Line)) {
@@ -191,7 +198,7 @@ reload:
          << "Enter Instruction Name:\t ";
     cin >> InstName;
     if (Insts.count(InstName))
-      cout << std::string(60, '=') + "\n" << Insts[InstName].print() << endl;
+      cout << "\n" << Insts[InstName].print() << endl;
     else
       goto reload;
   }

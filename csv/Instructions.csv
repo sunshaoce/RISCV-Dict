@@ -1,262 +1,262 @@
-NAME		EXTENTIONS	FORMAT				ACTUAL						DESCRIPTION						Columns		        Encodings
-add.uw		Zba		add.uw rd, rs1, rs2		 						X(rd) = X(rs2) + EXTZ(X(rs1)[31..0])			{R}			{0000100 000 0111011}
-add		RV32I,RV64I	add rd, rs1, rs2		 						x[rd] = x[rs1] + x[rs2]					{R}			{0000000 000 0110011}
-addi		RV32I,RV64I	addi rd, rs1, imm		 						x[rd] = x[rs1] + sext[imm]				{I}			{000 0010011}
-addiw		RV64I		addiw rd, rs1, imm		 						x[rd] = sext((x[rs1] + sext(imm))[31:0])		{I}			{000 0011011}
-addw		RV64I		addw rd, rs1, rs2		 						x[rd] = sext((x[rs1] + x[rs2])[31:0])			{R}			{0000000 000 0111011}
-amoadd.d	RV64A		amoadd.d rd, rs2, (rs1)		 						x[rd] = AMO64(M[x[rs1]] + x[rs2])			{AMO-R}			{00000 011}
-amoadd.w	RV32A,RV64A	amoadd.w rd, rs2, (rs1)		 						x[rd] = AMO32(M[x[rs1]] + x[rs2])			{AMO-R}			{00000 010}
-amoand.d	RV64A		amoand.d rd, rs2, (rs1)		 						x[rd] = AMO64(M[x[rs1]] & x[rs2]])			{AMO-R}			{01100 011}
-amoand.w	RV32A,RV64A	amoand.w rd, rs2, (rs1)		 						x[rd] = AMO32(M[x[rs1]] & x[rs2]])			{AMO-R}			{01100 010}
-amomax.d	RV64A		amomax.d rd, rs2, (rs1)		 						x[rd] = AMO64(M[x[rs1]] MAX x[rs2]])			{AMO-R}			{10100 011}
-amomax.w	RV32A,RV64A	amomax.w rd, rs2, (rs1)		 						x[rd] = AMO32(M[x[rs1]] MAX x[rs2]])			{AMO-R}			{10100 010}
-amomaxu.d	RV64A		amomaxu.d rd, rs2, (rs1)	 						x[rd] = AMO64(M[x[rs1]] MAXU x[rs2])			{AMO-R}			{11100 011}
-amomaxu.w	RV32A,RV64A	amomaxu.w rd, rs2, (rs1)	 						x[rd] = AMO32(M[x[rs1]] MAXU x[rs2])			{AMO-R}			{11100 010}
-amomin.d	RV64A		amomin.d rd, rs2, (rs1)		 						x[rd] = AMO64(M[x[rs1]] MIN x[rs2])			{AMO-R}			{10000 011}
-amomin.w	RV32A,RV64A	amomin.w rd, rs2, (rs1)		 						x[rd] = AMO32(M[x[rs1]] MIN x[rs2])			{AMO-R}			{10000 010}
-amominu.d	RV64A		amominu.d rd, rs2, (rs1)	 						x[rd] = AMO64(M[x[rs1]] MINU x[rs2])			{AMO-R}			{11000 011}
-amominu.w	RV32A,RV64A	amominu.w rd, rs2, (rs1)	 						x[rd] = AMO32(M[x[rs1]] MINU x[rs2])			{AMO-R}			{11000 010}
-amoor.d		RV64A		amoor.d rd, rs2, (rs1)		 						x[rd] = AMO64(M[x[rs1]] | x[rs2])			{AMO-R}			{01000 011}
-amoor.w		RV32A,RV64A	amoor.w rd, rs2, (rs1)		 						x[rd] = AMO32(M[x[rs1]] | x[rs2])			{AMO-R}			{01000 010}
-amoswap.d	RV64A		amoswap.d rd, rs2, (rs1)	 						x[rd] = AMO64(M[x[rs1]] SWAP x[rs2])			{AMO-R}			{00001 011}
-amoswap.w	RV32A,RV64A	amoswap.w rd, rs2, (rs1)	 						x[rd] = AMO32(M[x[rs1]] SWAP x[rs2])			{AMO-R}			{00001 010}
-amoxor.d	RV64A		amoxor.d rd, rs2, (rs1)		 						x[rd] = AMO64(M[x[rs1]] ˆ x[rs2])			{AMO-R}			{00100 011}
-amoxor.w	RV32A,RV64A	amoxor.w rd, rs2, (rs1)		 						x[rd] = AMO32(M[x[rs1]] ^ x[rs2])			{AMO-R}			{00100 010}
-and		RV32I,RV64I	and rd, rs1, rs2		 						x[rd] = x[rs1] & x[rs2]					{R}			{000000 111 0110011}
-andi		RV32I,RV64I	andi rd, rs1, immediate		 						x[rd] = x[rs1] & sext(imm)				{I}			{111 0010011}
-andn		Zbb		andn rd, rs1, rs2		 						X(rd) = X(rs1) & ~X(rs2)				{R}			{0100000 111 0110011}
-auipc		RV32I,RV64I	auipc rd, imm			 						x[rd] = pc + sext(imm[31:12] << 12)			{U}			{0010111}
-bclr		Zbs		bclr rd, rs1, rs2		 						X(rd) = X(rs1) & ~(1 << (X(rs2) & (XLEN - 1)))		{R}			{0100100 001 0110011}
-bclri		Zbs		bclri rd, rs1, shamt		 						X(rd) = X(rs1) & ~(1 << (shamt & (XLEN - 1)))		{}			{}
-beq		RV32I,RV64I	beq rs1, off			 						if (rs1 == rs2) pc += sext(off)				{B}			{000 1100011}
-beqz		RV32I,RV64I	beqz rs1, off			beq rs1, x0, offset				if (rs1 == 0) pc += sext(off)				{B}			{off[12] off[10:5] x0 rs1 000 off[4:1] off[11] 1100011}
-bext		Zbs		bext rd, rs1, rs2		 						X(rd) = (X(rs1) >> (X(rs2) & (XLEN - 1))) & 1		{R}			{0100100 101 0110011}
-bexti		Zbs		bexti rd, rs1, shamt		 						X(rd) = (X(rs1) >> (shamt & (XLEN - 1))) & 1		{}			{}
-bge		RV32I,RV64I	bge rs1, rs2, off		 						if (rs1 ≥s rs2) pc += sext(off)				{B}			{101 1100011}
-bgeu		RV32I,RV64I	bgeu rs1, rs2, off		 						if (rs1 ≥u rs2) pc += sext(off)				{B}			{111 1100011}
-bgez		RV32I,RV64I	bgez rs1, off			bge rs1, x0, offset				if (rs1 ≥s 0) pc += sext(off)				{B}			{off[12] off[10:5] x0 rs1 101 off[4:1] off[11] 1100011}
-bgt		RV32I,RV64I	bgt rs1, rs2, off		blt rs2, rs1, offset				if (rs1 >s rs2) pc += sext(off)				{B}			{off[12] off[10:5] rs1 rs2 100 off[4:1] off[11] 1100011}
-bgtu		RV32I,RV64I	bgtu rs1, rs2, off		bltu rs2, rs1, offset				if (rs1 >u rs2) pc += sext(off)				{B}			{off[12] off[10:5] rs1 rs2 110 off[4:1] off[11] 1100011}
-bgtz		RV32I,RV64I	bgtz rs2, off			blt x0, rs2, offset				if (rs2 >s 0) pc += sext(off)				{B}			{off[12] off[10:5] x0 rs2 100 off[4:1] off[11] 1100011}
-ble		RV32I,RV64I	ble rs1, rs2, off		bge rs2, rs1, offset				if (rs1 ≤s rs2) pc += sext(off)				{B}			{off[12] off[10:5] rs1 rs2 101 off[4:1] off[11] 1100011}
-bleu		RV32I,RV64I	bleu rs1, rs2, off		bgeu rs2, rs1, offset				if (rs1 ≤u rs2) pc += sext(off)				{B}			{off[12] off[10:5] rs1 rs2 111 off[4:1] off[11] 1100011}
-blez		RV32I,RV64I	blez rs2, off			bge x0, rs2, offset				if (rs2 ≤s 0) pc += sext(off)				{B}			{off[12] off[10:5] x0 rs2 101 off[4:1] off[11] 1100011}
-blt		RV32I,RV64I	blt rs1, rs2, off		 						if (rs1 <s rs2) pc += sext(off)				{B}			{100 1100011}
-bltz		RV32I,RV64I	bltz rs1, offset		blt rs1, x0, offset				if (rs1 <s 0) pc += sext(offset)			{B}			{off[12] off[10:5] x0 rs2 100 off[4:1] off[11] 1100011}
-bltu		RV32I,RV64I	bltu rs1, rs2, off		 						if (rs1 <u rs2) pc += sext(offset)			{B}			{110 1100011}
-bne		RV32I,RV64I	bne rs1, rs2, off		 						if (rs1 != rs2) pc += sext(offset)			{B}			{001 1100011}
-bnez		RV32I,RV64I	bnez rs1, off			bne rs1, x0, offset				if (rs1 != 0) pc += sext(offset)			{B}			{off[12] off[10:5] x0 rs2 001 off[4:1] off[11] 1100011}
-c.add		RV32IC,RV64IC	c.add rd, rs2			 						x[rd] = x[rd] + x[rs2]					{C-Arith-R}		{100 1 10}
-c.addi		RV32IC,RV64IC	c.addi rd, imm			 						x[rd] = x[rd] + sext(imm)				{C-Arith-I}		{000 01}
-c.addi16sp	RV32IC,RV64IC	c.addi16sp imm			 						x[2] = x[2] + sext(imm)					{3 1 5 1 1 2 1 2}	{011 imm[9] 00010 imm[4] imm[6] imm[8:7] imm[5] 01}
-c.addi4spn	RV32IC,RV64IC	c.addi4spn rd', uimm		 						x[8+rd'] = x[2] + uimm					{3 2 4 1 1 3 2}		{000 uimm[5:4] uimm[9:6] uimm[2] uimm[3] rd' 00}
-c.addiw		RV64IC		c.addiw rd, imm			 						x[rd] = sext((x[rd] + sext(imm))[31:0])			{C-Arith-I}		{001 01}
-c.and		RV32IC,RV64IC	c.and rd', rs2'			 						x[8+rd'] = x[8+rd'] & x[8+rs2']				{C-Logic-R}		{100011 11 01}
-c.andw		RV64IC		c.addw rd', rs2'		 						x[8+rd'] = sext(x[8+rd'] + x[8+rs2'])[31:0])		{C-Logic-R}		{100111 01 01}
-c.andi		RV32IC,RV64IC	c.andi rd', imm			 						x[8+rd'] = x[8+rd'] & sext(imm)				{C-Logic-I}		{100 10 01}
-c.beqz		RV32IC,RV64IC	c.beqz rs1', offset		 						if (x[8+rs1′] == 0) pc += sext(offset)			{3 2 1 3 2 2 1 2}	{110 off[8] off[4:3] rs1' off[7:6] off[2:1] off[5] 01}
-c.bnez		RV32IC,RV64IC	c.bnez rs1', off		 						if (x[8+rs1'] != 0) pc += sext(off)			{3 2 1 3 2 2 1 2}	{111 off[8] off[4:3] rs1' off[7:6] off[2:1] off[5] 01}
-c.ebreak	RV32IC,RV64IC	c.ebreak			 						RaiseException(Breakpoint)				{3 1 5 5 2}		{100 1 00000 00000 10}
-c.fld		RV32DC,RV64DC	c.fld rd′, uimm(rs1')		 						f[8+rd′] = M[x[8+rs1′] + uimm][63:0]			{3 3 3 2 3 2}		{001 uimm[5:3] rs1' uimm[7:6] rd' 00}
-c.fldsp		RV32DC,RV64DC	c.fldsp rd, uimm(x2)		 						f[rd] = M[x[2] + uimm][63:0]				{3 1 5 2 3 2}		{001 uimm[5] rd uimm[4:3] uimm[8:6] 10}
-c.flw		RV32FC		c.flw rd′, uimm(rs1')		 						f[8+rd′] = M[x[8+rs1′] + uimm][31:0]			{C-LoadStore}		{011 rd'}
-c.flwsp		RV32FC		c.flwsp rd, uimm(x2)		 						f[rd] = M[x[2] + uimm][31:0]				{3 1 5 3 2 2}		{011 uimm[5] rd uimm[4:2] uimm[7:6] 10}
-c.fsd		RV32DC,RV64DC	c.fsd rs2′, uimm(rs1′)		 						M[x[8+rs1'] + uimm][63:0] = f[8+rs2′]			{3 3 3 2 3 2}		{101 uimm[5:3] rs1' uimm[7:6] rs2' 00}
-c.fsdsp		RV32DC,RV64DC	c.fsdsp rs2, uimm(x2)		 						M[x[2] + uimm][63:0] = f[rs2]				{3 3 3 5 2}		{101 uimm[5:3] uimm[8:6] rs2 10}
-c.fsw		RV32FC		c.fsw rs2′, uimm(rs1′)		 						M[x[8+rs1′] + uimm][31:0] = f[8+rs2′]			{C-LoadStore}		{111 rs2'}
-c.fswsp		RV32FC		c.fswsp rs2, uimm(x2)		 						M[x[2] + uimm][31:0] = f[rs2]				{3 4 2 5 2}		{111 uimm[5:2] uimm[7:6] rs2 10}
-c.j		RV32IC,RV64IC	c.j off				 						pc += sext(offset)					{3 1 1 2 1 1 1 3 1 2}	{101 off[11] off[4] off[9:8] off[10] off[6] off[7] off[3:1] off[5] 01}
-c.jal		RV32IC		c.jal off			 						x[1] = pc+2; pc += sext(offset)				{3 1 1 2 1 1 1 3 1 2}	{001 off[11] off[4] off[9:8] off[10] off[6] off[7] off[3:1] off[5] 01}
-c.jalr		RV32IC,RV64IC	c.jalr rs1			 						t = pc+2; pc = x[rs1]; x[1] = t				{3 1 5 5 2}		{100 1 rs1 00000 10}
-c.jr		RV32IC,RV64IC	c.jr rs1			 						pc = x[rs1]						{3 1 5 5 2}		{100 0 rs1 00000 10}
-c.ld		RV64IC		c.ld rd', uimm(rs1')		 						x[8+rd'] = M[x[8+rs1'] + uimm][63:0]			{3 3 3 2 3 2}		{011 uimm[5:3] rs1' uimm[7:6] rs2' 00}
-c.ldsp		RV64IC		c.ldsp rd, uimm(x2)		 						x[rd] = M[x[2] + uimm][63:0]				{3 5 5 2 3 2}		{011 uimm[5] rd uimm[4:3] uimm[8:6] 10}
-c.li		RV32IC,RV64IC	c.li rd, imm			 						x[rd] = sext(imm)					{3 1 5 5 2}		{010 imm[5] rd imm[4:0] 01}
-c.lui		RV32IC,RV64IC	c.lui rd, imm			 						x[rd] = sext(imm[17:12] << 12)				{3 1 5 5 2}		{011 imm[17] rd imm[16:12] 01}
-c.lw		RV32IC,RV64IC	c.lw rd', uimm(rs1')		 						x[8+rd'] = sext(M[x[8+rs1'] + uimm][31:0])		{C-LoadStore}		{010 rd'}
-c.lwsp		RV32IC,RV64IC	c.lwsp rd, uimm(x2)		 						x[rd] = sext(M[x[2] + uimm][31:0])			{3 1 5 3 2 2}		{010 uimm[5] rd uimm[4:2] uimm[7:6] 10}
-c.mv		RV32IC,RV64IC	c.mv rd, rs2			 						x[rd] = x[rs2]						{3 1 5 5 2}		{100 0 rd rs2 10}
-c.or		RV32IC,RV64IC	c.or rd', rs2'			 						x[8+rd'] = x[8+rd'] | x[8+rs2']				{6 3 2 3 2}		{100011 rd' 10 rs2' 01}
-c.sd		RV64IC		c.sd rs2', uimm(rs1')		 						M[x[8+rs1'] + uimm][63:0] = x[8+rs2']			{C-LoadStore}		{111 rs2'}
-c.sdsp		RV64IC		c.sdsp rs2, uimm(x2)		 						M[x[2] + uimm][63:0] = x[rs2]				{3 3 3 5 2}		{111 uimm[5:3] uimm[8:6] rs2 10}
-c.slli		RV32IC,RV64IC	c.slli rd, uimm			 						x[rd] = x[rd] << uimm					{3 1 5 5 2}		{000 uimm[5] rs uimm[4:0] 10}
-c.srai		RV32IC,RV64IC	c.srai rd', uimm		 						x[8+rd'] = x[8+rd'] >>s uimm				{3 1 2 3 5 2}		{100 uimm[5] 01 rd' uimm[4:0] 01}
-c.srli		RV32IC,RV64IC	c.srli rd', uimm		 						x[8+rd'] = x[8+rd'] >>u uimm				{3 1 2 3 5 2}		{100 uimm[5] 00 rd' uimm[4:0] 01}
-c.sub		RV32IC,RV64IC	c.sub rd', rs2'			 						x[8+rd'] = x[8+rd'] - x[8+rs2']				{6 3 2 3 2}		{100011 rd' 00 rs2' 01}
-c.subw		RV64IC		c.subw rd', rs2'		 						x[8+rd'] = sext((x[8+rd'] - x[8+rs2'])[31:0])		{6 3 2 3 2}		{100111 rd' 00 rs2' 01}
-c.sw		RV64IC		c.sw rs2', uimm(rs1')		 						M[x[8+rs1'] + uimm][31:0] = x[8+rs2']			{C-LoadStore}		{110 rs2'}
-c.swsp		RV32IC,RV64IC	c.swsp rs2, uimm(x2)		 						M[x[2] + uimm][31:0] = x[rs2]				{3 4 2 5 2}		{110 uimm[5:2] uimm[7:6] rs2 10}
-c.xor		RV32IC,RV64IC	c.xor rd', rs2'			 						x[8+rd'] = x[8+rd'] ˆ x[8+rs2']				{6 3 2 3 2}		{100011 rd' 01 rs2' 01}
-call		RV32I,RV64I	call rd, symbol			auipc rd, offsetHi; jalr rd, offsetLo(rd)	x[rd] = pc+8; pc = &symbol				{}			{}
-csrr		RV32I,RV64I	csrr rd, csr			 						x[rd] = CSRs[csr]					{CSR-I}			{csr x0 010 rd 1110011}
-csrc		RV32I,RV64I	csrc csr, rs1			 						CSRs[csr] &= ∼x[rs1]					{CSR-I}			{csr rs1 011 x0 1110011}
-csrci		RV32I,RV64I	csrci csr, zimm[4:0]		 						CSRs[csr] &= ∼zimm					{CSRI-I}		{csr zimm[4:0] 111 x0 1110011}
-csrrc		RV32I,RV64I	csrrc rd, csr, rs1		 						t = CSRs[csr]; CSRs[csr] = t &∼x[rs1]; x[rd] = t	{CSR-I}			{011}
-csrrci		RV32I,RV64I	csrrci rd, csr, zimm[4:0]	 						t = CSRs[csr]; CSRs[csr] = t &∼zimm; x[rd] = t		{CSRI-I}		{111}
-csrrs		RV32I,RV64I	csrrs rd, csr, rs1		 						t = CSRs[csr]; CSRs[csr] = t | x[rs1]; x[rd] = t	{CSR-I}			{010}
-csrrsi		RV32I,RV64I	csrrsi rd, csr, zimm[4:0]	 						t = CSRs[csr]; CSRs[csr] = t | zimm; x[rd] = t		{CSRI-I}		{110}
-csrrw		RV32I,RV64I	csrrw rd, csr, rs1		 						t = CSRs[csr]; CSRs[csr] = x[rs1]; x[rd] = t0		{CSR-I}			{001}
-csrrwi		RV32I,RV64I	csrrwi rd, csr, zimm[4:0]	 						x[rd] = CSRs[csr]; CSRs[csr] = zimm			{CSRI-I}		{101}
-csrs		RV32I,RV64I	csrs csr, rs1			 						CSRs[csr] |= x[rs1]					{CSR-I}			{csr rs1 011 x0 1110011}
-csrsi		RV32I,RV64I	csrsi csr, zimm[4:0]		 						CSRs[csr] |= zimm					{CSRI-I}		{csr zimm[4:0] 110 x0 1110011}
-csrw		RV32I,RV64I	csrw csr, rs1			 						CSRs[csr] = x[rs1]					{CSR-I}			{csr rs1 001 x0 1110011}
-csrwi		RV32I,RV64I	csrwi csr, zimm[4:0]		 						CSRs[csr] = zimm					{CSRI-I}		{csr zimm[4:0] 101 x0 1110011}
-div		RV32M,RV64M	div rd, rs1, rs2		 						x[rd] = x[rs1] ÷s x[rs2]				{R}			{0000001 100 0110011}
-divu		RV32M,RV64M	divu rd, rs1, rs2		 						x[rd] = x[rs1] ÷u x[rs2]				{R}			{0000001 101 0110011}
-divuw		RV64M		divuw rd, rs1, rs2		 						x[rd] = sext(x[rs1][31:0] ÷u x[rs2][31:0])		{R}			{0000001 101 0111011}
-divw		RV64M		divw rd, rs1, rs2		 						x[rd] = sext(x[rs1][31:0] ÷s x[rs2][31:0])		{R}			{0000001 100 0111011}
-ebreak		RV32I,RV64I	ebreak				 						RaiseException(Breakpoint)				{I}			{000000000001 00000 000 00000 1110011}
-ecall		RV32I,RV64I	ecall				 						RaiseException(EnvironmentCall)				{I}			{000000000000 00000 000 00000 1110011}
-fabs.d		RV32D,RV64D	fabs.d rd, rs1			 						f[rd] = abs([rs1])					{R}			{0010001 rs1 rs1 010 rd 1010011}
-fabs.s		RV32F,RV64F	fabs.s rd, rs1			 						f[rd] = abs([rs1])					{R}			{0010000 rs1 rs1 010 rd 1010011}
-fadd.d		RV32D,RV64D	fadd.d rd, rs1, rs2		 						f[rd] = f[rs1] + f[rs2]					{F-ARITH-R}		{0000001}
-fadd.s		RV32F,RV64F	fadd.s rd, rs1, rs2		 						f[rd] = f[rs1] + f[rs2]					{F-ARITH-R}		{0000000}
-fclass.d	RV32D,RV64D	fclass.d rd, rs1, rs2		 						x[rd] = classify d(f[rs1])				{R}			{1110001 00000 rs1 001 rd 1010011}
-fclass.s	RV32F,RV64F	fclass.s rd, rs1, rs2		 						x[rd] = classify s(f[rs1])				{R}			{1110000 00000 rs1 001 rd 1010011}
-fcvt.d.l	RV64D		fcvt.d.l rd, rs1, rs2		 						f[rd] = f64 s64(x[rs1])					{FCVT-R}		{1101001 00010}
-fcvt.d.lu	RV64D		fcvt.d.lu rd, rs1, rs2		 						f[rd] = f64 u64(x[rs1])					{FCVT-R}		{1101001 00011}
-fcvt.d.s	RV32D,RV64D	fcvt.d.s rd, rs1, rs2		 						f[rd] = f64 f32(x[rs1])					{FCVT-R}		{0100001 00000}
-fcvt.d.w	RV32D,RV64D	fcvt.d.w rd, rs1, rs2		 						f[rd] = f64 s32(x[rs1])					{FCVT-R}		{1101001 00000}
-fcvt.d.wu	RV32D,RV64D	fcvt.d.wu rd, rs1, rs2		 						f[rd] = f64 u32(x[rs1])					{FCVT-R}		{1101001 00001}
-fcvt.l.d	RV64D		fcvt.l.d rd, rs1, rs2		 						x[rd] = s64 f64(f[rs1])					{FCVT-R}		{1100001 00010}
-fcvt.l.s	RV64F		fcvt.l.s rd, rs1, rs2		 						x[rd] = s64 f32(f[rs1])					{FCVT-R}		{1100000 00010}
-fcvt.lu.d	RV64D		fcvt.lu.d rd, rs1, rs		 						x[rd] = u64 f64(f[rs1])					{FCVT-R}		{1100001 00011}
-fcvt.lu.s	RV64F		fcvt.lu.s rd, rs1, rs		 						x[rd] = u64 f32(f[rs1])					{FCVT-R}		{1100000 00011}
-fcvt.s.d	RV32D,RV64D	fcvt.s.d rd, rs1, rs2		 						x[rd] = f32 f54(f[rs1])					{FCVT-R}		{0100000 00001}
-fcvt.s.l	RV64F		fcvt.s.l rd, rs1, rs2		 						x[rd] = f32 s64(f[rs1])					{FCVT-R}		{1101000 00010}
-fcvt.s.lu	RV64F		fcvt.s.lu rd, rs1, rs		 						x[rd] = f32 u64(f[rs1])					{FCVT-R}		{1101000 00011}
-fcvt.s.w	RV32F,RV64F	fcvt.s.w rd, rs1, rs2		 						x[rd] = f32 s32(f[rs1])					{FCVT-R}		{1101000 00000}
-fcvt.s.wu	RV32F,RV64F	fcvt.s.wu rd, rs1, rs		 						x[rd] = f32 u32(f[rs1])					{FCVT-R}		{1101000 00001}
-fcvt.w.d	RV32D,RV64D	fcvt.w.d rd, rs1, rs2		 						x[rd] = sext(s32 f64(f[rs1]))				{FCVT-R}		{1100001 00000}
-fcvt.wu.d	RV32D,RV64D	fcvt.wu.d rd, rs1, rs		 						x[rd] = sext(u32 f64(f[rs1]))				{FCVT-R}		{1100001 00001}
-fcvt.w.s	RV32f,RV64f	fcvt.w.s rd, rs1, rs2		 						x[rd] = sext(s32 f32(f[rs1]))				{FCVT-R}		{1100000 00000}
-fcvt.wu.s	RV32F,RV64F	fcvt.wu.s rd, rs1, rs		 						x[rd] = sext(u32 f32(f[rs1]))				{FCVT-R}		{1100000 00001}
-fdiv.d		RV32D,RV64D	fdiv.d rd, rs1, rs2		 						f[rd] = f[rs1] / f[rs2]					{F-ARITH-R}		{0001101}
-fdiv.s		RV32F,RV64F	fdiv.s rd, rs1, rs2		 						f[rd] = f[rs1] / f[rs2]					{F-ARITH-R}		{0001100}
-fence		RV32I,RV64I	fence pred, succ		 						Fence(pred, succ)					{R}			{0000 pred succ 00000 000 00000 0001111}
-fence.i		RV32I,RV64I	fence.i				 						Fence(Store, Fetch)					{I}			{000000000000 00000 001 00000 0001111}
-feq.d		RV32D,RV64D	feq.d rd, rs1, rs2		 						f[rd] = f[rs1] == f[rs2]				{R}			{1010001 010 1010011}
-feq.s		RV32F,RV64F	feq.s rd, rs1, rs2		 						f[rd] = f[rs1] == f[rs2]				{R}			{1010000 010 1010011}
-fld		RV32D,RV64D	fld rd, offset(rs1)		 						f[rd] = M[x[rs1]] + sext(off)[63:0]			{I}			{offset[11:0] rs1 011 rd 0000111}
-fle.d		RV32D,RV64D	fle.d rd, rs1, rs2		 						x[rd] = f[rs1] <= f[rs2]				{R}			{1010001 000 1010011}
-fle.s		RV32F,RV64F	fle.s rd, rs1, rs2		 						x[rd] = f[rs1] <= f[rs2]				{R}			{1010000 000 1010011}
-flt.d		RV32D,RV64D	fle.t rd, rs1, rs2		 						x[rd] = f[rs1] < f[rs2]					{R}			{1010001 001 1010011}
-flt.s		RV32F,RV64F	flt.s rd, rs1, rs2		 						x[rd] = f[rs1] < f[rs2]					{R}			{1010000 001 1010011}
-flw		RV32F,RV64F	flw rd, offset(rs1)		 						f[rd] = M[x[rs1]] + sext(off)[31:0] 			{I}			{offset[11:0] rs1 010 rd 0000111}
-fmadd.d		RV32D,RV64D	fmadd.d rd, rs1, rs2, rs3	 						f[rd] = f[rs1] * f[rs2] + f[rs3]			{R4}			{01 1000011}
-fmadd.s		RV32F,RV64F	fmadd.s rd, rs1, rs2, rs3	 						f[rd] = f[rs1] * f[rs2] + f[rs3]			{R4}			{00 1000011}
-fmax.d		RV32D,RV64D	fmax.d rd, rs1, rs2		 						f[rd] = max(f[rs1], f[rs2])				{R}			{0010101 001 1010011}
-fmax.s		RV32F,RV64F	fmax.s rd, rs1, rs2		 						f[rd] = max(f[rs1], f[rs2])				{R}			{0010100 001 1010011}
-fmin.d		RV32D,RV64D	fmin.d rd, rs1, rs2		 						f[rd] = min(f[rs1], f[rs2])				{R}			{0010101 000 1010011}
-fmin.s		RV32F,RV64F	fmin.s rd, rs1, rs2		 						f[rd] = min(f[rs1], f[rs2])				{R}			{0010100 000 1010011}
-fmsub.d		RV32D,RV64D	fmsub.d rd, rs1, rs2, rs3	 						f[rd] = f[rs1] * f[rs2] - f[rs3]			{R4}			{01 1000111}
-fmsub.s		RV32F,RV64F	fmsub.s rd, rs1, rs2, rs3	 						f[rd] = f[rs1] * f[rs2] - f[rs3]			{R4}			{00 1000111}
-fmul.d		RV32D,RV64D	fmul.d rd, rs1, rs2		 						f[rd] = f[rs1] * f[rs2]					{F-ARITH-R}		{0001001}
-fmul.s		RV32F,RV64F	fmul.s rd, rs1, rs2		 						f[rd] = f[rs1] * f[rs2]					{F-ARITH-R}		{0001000}
-fmv.d		RV32D,RV64D	fmv.d rd, rs1			 						f[rd] = f[rs1]						{R}			{0010001 rs1 rs1 000 rd 1010011}
-fmv.d.x		RV64D		fmv.d.x rd, rs1, rs2		 						f[rd] = x[rs1][63:0]					{R}			{1111001 00000 rs1 000 rs 1010011}
-fmv.s		RV32F,RV64F	fmv.s rd, rs1			 						f[rd] = f[rs1]						{R}			{0010000 rs1 rs1 000 rd 1010011}
-fmv.w.x		RV32F,RV64F	fmv.w.x rd, rs1, rs2		 						f[rd] = x[rs1][31:0]					{R}			{1111000 00000 rs1 000 rd 1010011}
-fmv.x.d		RV64D		fmv.x.d rd, rs1, rs2		 						x[rd] = f[rs1][63:0]					{R}			{1110001 00000 rs1 000 rd 1010011}
-fmv.x.w		RV32F,RV64F	fmv.x.w rd, rs1, rs2		 						x[rd] = sext(f[rs1][31:0])				{R}			{1110000 00000 rs1 000 rd 1010011}
-fneg.d		RV32D,RV64D	fneg.d rd, rs1			 						f[rd] = -f[rs1]						{R}			{0010001 rs1 rs1 001 rd 1010011}
-fneg.s		RV32F,RV64F	fneg.s rd, rs1			 						f[rd] = -f[rs1]						{R}			{0010000 rs1 rs1 001 rd 1010011}
-fnmadd.d	RV32D,RV64D	fnmadd.d rd, rs1, rs2, rs3	 						f[rd] = -f[rs1] * f[rs2] - f[rs3]			{R4}			{01 1001111}
-fnmadd.s	RV32F,RV64F	fnmadd.s rd, rs1, rs2, rs3	 						f[rd] = -f[rs1] * f[rs2] - f[rs3]			{R4}			{00 1001111}
-fnmsub.d	RV32D,RV64D	fnmsub.d rd, rs1, rs2, rs3	 						f[rd] = -f[rs1] * f[rs2] + f[rs3]			{R4}			{01 1001011}
-fnmsub.s	RV32F,RV64F	fnmsub.s rd, rs1, rs2, rs3	 						f[rd] = -f[rs1] * f[rs2] + f[rs3]			{R4}			{00 1001011}
-frcsr		RV32F,RV64F	frcsr rd			 						x[rd] = CSRs[fcsr]					{CSR-I}			{fcsr rs1 001 rd 1110011}
-frflags		RV32F,RV64F	frflags rd			 						x[rd] = CSRs[fflags]					{CSR-I}			{fflags rs1 001 rd 1110011}
-frrm		RV32F,RV64F	frrm rd				 						x[rd] = CSRs[frm]					{CSR-I}			{frm rs1 001 rd 1110011}
-fscsr		RV32F,RV64F	fscsr rd, rs1			 						t = CSRs[fcsr]; CSRs[fcsr] = x[rs1]; x[rd] = t		{CSR-I}			{fcsr rs1 001 rd 1110011}
-fsd		RV32D,RV64D	fsd rs2, offset(rs1)		 						M[x[rs1] + sext(offset)] = f[rs2][63:0]			{S}			{011 0100111}
-fsflags		RV32F,RV64F	fsflags rd, rs1			 						t = CSRs[fflags]; CSRs[fflags] = x[rs1]; x[rd] = t	{CSR-I}			{fflags rs1 001 rd 1110011}
-fsgnj.d		RV32D,RV64D	fsgnj.d rd, rs1, rs2		 						f[rd] = {f[rs2][63], f[rs1][62:0]}			{R}			{0010001 000 1010011}
-fsgnj.s		RV32F,RV64F	fsgnj.s rd, rs1, rs2		 						f[rd] = {f[rs2][31], f[rs1][30:0]}			{R}			{0010000 000 1010011}
-fsgnjn.d	RV32D,RV64D	fsgnjn.d rd, rs1, rs2		 						f[rd] = {~f[rs2][63], f[rs1][62:0]}			{R}			{0010001 001 1010011}
-fsgnjn.s	RV32F,RV64F	fsgnjn.s rd, rs1, rs2		 						f[rd] = {~f[rs2][31], f[rs1][30:0]}			{R}			{0010000 001 1010011}
-fsgnjx.d	RV32D,RV64D	fsgnjx.d rd, rs1, rs2		 						f[rd] = {f[rs1][63] ˆ f[rs2][63], f[rs1][62:0]}		{R}			{0010001 010 1010011}
-fsgnjx.s	RV32F,RV64F	fsgnjx.s rd, rs1, rs2		 						f[rd] = {f[rs1][31] ˆ f[rs2][31], f[rs1][30:0]}		{R}			{0010000 010 1010011}
-fsqrt.d		RV32D,RV64D	fsqrt.d rd, rs1, rs2		 						f[rd] = sqrt(f[rs1])					{R}			{0101101 00000 rs1 rm rd 1010011}
-fsqrt.s		RV32F,RV64F	fsqrt.s rd, rs1, rs2		 						f[rd] = sqrt(f[rs1])					{R}			{0101100 00000 rs1 rm rd 1010011}
-fsrm		RV32F,RV64F	fsrm rd, rs1			 						t = CSRs[frm]; CSRs[frm] = x[rs1]; x[rd] = t		{}			{}
-fsub.d		RV32D,RV64D	fsub.d rd, rs1, rs2		 						f[rd] = f[rs1] - f[rs2]					{F-ARITH-R}		{0000101}
-fsub.s		RV32F,RV64F	fsub.s rd, rs1, rs2		 						f[rd] = f[rs1] - f[rs2]					{F-ARITH-R}		{0000100}
-fsw		RV32F,RV64F	fsw rs2, offset(rs1)		 						M[x[rs1] + sext(off)] = f[rs2][31:0]			{S}			{010 0100111}
-j		RV32I,RV64I	j off				 						pc += sext(off)						{J}			{off[20] off[10:1] off[11] off[19:12] x0 1101111}
-jal		RV32I,RV64I	jal rd, off			 						x[rd] = pc+4; pc += sext(off)				{J}			{1101111}
-jalr		RV32I,RV64I	jalr rd, off(rs1)		 						t =pc+4; pc=(x[rs1]+sext(off))&∼1; x[rd]=t		{Off-I}			{000 1100111}
-jr		RV32I,RV64I	jr rs1				 						pc = x[rs1]						{Off-I}			{0 rs1 000 x0 1100111}
-la		RV32I,RV64I	la rd, symbol			 						x[rd] = &symbol						{}			{}
-lb		RV32I,RV64I	lb rd, offset(rs1)		 						x[rd] = sext(M[x[rs1] + sext(offset)][7:0])		{I}			{000 0000011}
-lbu		RV32I,RV64I	lbu rd, offset(rs1)		 						x[rd] = M[x[rs1] + sext(offset)][7:0]			{I}			{100 0000011}
-ld		RV64I		ld rd, off(rs1)			 						x[rd] = M[x[rs1] + sext(off)][63:0]			{Off-I}			{011 0000011}
-lh		RV32I,RV64I	lh rd, off(rs1)			 						x[rd] = sext(M[x[rs1] + sext(off)][15:0])		{Off-I}			{001 0000011}
-lhu		RV32I,RV64I	lhu rd, off(rs1)		 						x[rd] = M[x[rs1] + sext(off)][15:0]			{Off-I}			{101 0000011}
-li		RV32I,RV64I	li rd, imm			 						x[rd] = immediate					{}			{}
-lla		RV32I,RV64I	lla rd, symbol			 						x[rd] = &symbol						{}			{}
-lr.d		RV64A		lr.d rd, (rs1)			 						x[rd] = LoadReserved64(M[x[rs1]])			{AMO-R}			{00010 aq rl 00000 rs1 011 rd 0101111}
-lr.w		RV32A,RV64A	lr.w rd, (rs1)			 						x[rd] = LoadReserved32(M[x[rs1]])			{AMO-R}			{00010 aq rl 00000 rs1 010 rd 0101111}
-lui		RV32I,RV64I	lui rd,imm			 						x[rd] = sext(imm[31:12] << 12)				{U}			{0110111}
-lw		RV32I,RV64I	lw rd, off(rs1)			 						x[rd] = sext(M[x[rs1] + sext(off)][31:0])		{Off-I}			{010 0000011}
-lwu		RV64I		lwu rd, off(rs1)		 						x[rd] = M[x[rs1] + sext(off)][31:0]			{Off-I}			{110 0000011}
-mret		RV32I,RV64I	mret				 						ExceptionReturn(Machine)				{R}			{0011000 00010 00000 000 00000 1110011}
-mul		RV32M,RV64M	mul rd, rs1, rs2		 						x[rd] = x[rs1] * x[rs2]					{R}			{0000001 000 0110011}
-mulh		RV32M,RV64M	mulh rd, rs1, rs2		 						x[rd] = (x[rs1] s*s x[rs2]) >>s XLEN			{R}			{0000001 001 0110011}
-mulhsu		RV32M,RV64M	mulhsu rd, rs1, rs2		 						x[rd] = (x[rs1] s*u x[rs2]) >>s XLEN			{R}			{0000001 010 0110011}
-mulhu		RV32M,RV64M	mulhu rd, rs1, rs2		 						x[rd] = (x[rs1] u*u x[rs2]) >>u XLEN			{R}			{0000001 011 0110011}
-mulw		RV32M,RV64M	mulw rd, rs1, rs2		 						x[rd] = sext((x[rs1] * x[rs2])[31:0])			{R}			{0000001 000 0111011}
-mv		RV32I,RV64I	mv rd, rs1			 						x[rd] = x[rs1]						{I}			{0 rs1 000 rd 0010011}
-neg		RV32I,RV64I	neg rd, rs2			 						x[rd] = -x[rs2]						{R}			{0100000 rs2 x0 000 rd 0110011}
-negw		RV64I		negw rd, rs2			 						x[rd] = sext((-x[rs2])[31:0])				{R}			{0100000 rs2 x0 000 rd 0111011}
-nop		RV32I,RV64I	nop				 						Nothing							{I}			{000000000000 00000 000 00000 0010011}
-not		RV32I,RV64I	not rd, rs1			 						x[rd] = ~x[rs1]						{I}			{-1 rs1 100 rd 0010011}
-or		RV32I,RV64I	or rd, rs1, rs2			 						x[rd] = x[rs1] | x[rs2]					{R}			{0000000 110 0110011}
-ori		RV32I,RV64I	ori rd, rs1, imm		 						x[rd] = x[rs1] | sext(imm)				{I}			{110 0010011}
-rdcycle		RV32I,RV64I	rdcycle rd			 						x[rd] = CSRs[cycle]					{CSR-I}			{cycle x0 010 rd 1110011}
-rdcycleh	RV32I,RV64I	rdcycleh rd			 						x[rd] = CSRs[cycleh]					{CSR-I}			{cycleh x0 010 rd 1110011}
-rdinstret	RV32I,RV64I	rdinstret rd			 						x[rd] = CSRs[instret]					{CSR-I}			{instret x0 010 rd 1110011}
-rdinstreth	RV32I,RV64I	rdinstreth rd			 						x[rd] = CSRs[instreth]					{CSR-I}			{instret x0 010 rd 1110011}
-rdtime		RV32I,RV64I	rdtime rd			 						x[rd] = CSRs[time]					{CSR-I}			{time x0 010 rd 1110011}
-rdtimeh		RV32I,RV64I	rdtimeh rd			 						x[rd] = CSRs[timeh]					{CSR-I}			{timeh x0 010 rd 1110011}
-rem		RV32M,RV64M	rem rd, rs1, rs2		 						x[rd] = x[rs1] %s x[rs2]				{R}			{0000001 110 0110011}
-remu		RV32M,RV64M	remu rd, rs1, rs2		 						x[rd] = x[rs1] %u x[rs2]				{R}			{0000001 111 0110011}
-remuw		RV64M		remuw rd, rs1, rs2		 						x[rd] = sext(x[rs1][31:0] %u x[rs2][31:0])		{R}			{0000001 111 0111011}
-remw		RV64M		remw rd, rs1, rs2		 						x[rd] = sext(x[rs1][31:0] %s x[rs2][31:0])		{R}			{0000001 110 0111011}
-ret		RV32I,RV64I	ret				 						pc = x[1]						{I}			{0 x1 000 x0 1100111}
-sb		RV32I,RV64I	sb rs2, offset(rs1)		 						M[x[rs1] + sext(offset)] = x[rs2][7:0]			{S}			{000 0100011}
-sc.d		RV32A,RV64A	sc.d rd, rs2, (rs1)		 						x[rd] = StoreConditional64(M[x[rs1]], x[rs2])		{AMO-R}			{00011 011}
-sc.w		RV32A,RV64A	sc.w rd, rs2, (rs1)		 						x[rd] = StoreConditional32(M[x[rs1]], x[rs2])		{AMO-R}			{00011 010}
-sd		RV64I		sd rs2, offset(rs1)		 						M[x[rs1] + sext(off)] = x[rs2][63:0]			{S}			{011 0100011}
-seqz		RV32I,RV64I	seqz rd, rs1			 						x[rd] = (x[rs1] == 0)					{I}			{1 rs1 011 rd 0010011}
-sext.w		RV64I		sext.w rd, rs1			 						x[rd] = sext(x[rs1][31:0])				{I}			{0 rs1 000 rd 0011011}
-sfence.vma	RV32I,RV64I	sfence.vma rs1, rs2		 						Fence(Store, AddressTranslation)			{R}			{0001001 rs2 rs1 000 00000 1110011}
-sgtz		RV32I,RV64I	sgtz rs, rs2			 						x[rd] = (x[rs2] >s 0)					{R}			{000000 rs2 x0 010 rd 0110011}
-sh		RV32I,RV64I	sh rs2, off(rs1)		 						M[x[rs1] + sext(off)] = x[rs2][15:0]			{S}			{001 0100011}
-sh1add		Zba		sh1add rd, rs1, rs2		 						X(rd) = X(rs2) + (X(rs1) << 1)				{R}			{0010000 010 0110011}
-sll		RV32I,RV64I	sll rd, rs1, rs2		 						x[rd] = x[rs1] << x[rs2]				{R}			{0000000 001 0110011}
-slli		RV32I,RV64I	slli rd, rs1, shamt		 						x[rd] = x[rs1] << shamt					{Shift-I}		{000000 001 0010011}
-slliw		RV32I,RV64I	slliw rd, rs1, shamt		 						x[rd] = sext(x[rs1] << shamt)[31:0]			{Shift-I}		{000000 001 0011011}
-sllw		RV64I		sllw rd, rs1, rs2		 						x[rd] = sext((x[rs1] << x[rs2][4:0])[31:0])		{R}			{000000 001 0111011}
-slt		RV32I,RV64I	slt rd, rs1, rs2		 						x[rd] = x[rs1] <s x[rs2]				{R}			{000000 010 0110011}
-slti		RV32I,RV64I	slti rd, rs1, imm		 						x[rd] = x[rs1] <s sext(imm)				{I}			{010 0010011}
-sltiu		RV32I,RV64I	sltiu rd, rs1, imm		 						x[rd] = x[rs1] <u sext(imm)				{I}			{011 0010011}
-sltu		RV32I,RV64I	sltu rd, rs1, rs2		 						x[rd] = x[rs1] <u x[rs2]				{R}			{000000 011 0110011}
-sltz		RV32I,RV64I	sltz rd, rs1, rs2		 						x[rd] = (x[rs1] <s 0)					{R}			{000000 x0 rs1 010 rd 0110011}
-snez		RV32I,RV64I	snez rd, rs2			 						x[rd] = (x[rs2] != 0)					{R}			{000000 rs2 x0 011 rd 0110011}
-sra		RV32I,RV64I	sra rd, rs1, rs2		 						x[rd] = x[rs1] >>s x[rs2]				{R}			{0100000 101 0110011}
-srai		RV32I,RV64I	srai rd, rs1, shamt		 						x[rd] = x[rs1] >>s shamt				{Shift-I}		{010000 101 0010011}
-sraiw		RV64I		sraiw rd, rs1, shamt		 						x[rd] = sext(x[rs1][31:0] >>s shamt)			{Shift-I}		{010000 101 0011011}
-sraw		RV64I		sraw rd, rs1, rs2		 						x[rd] = sext(x[rs1][31:0] >>s x[rs2][4:0])		{R}			{0100000 101 0111011}
-sret		RV32I,RV64I	sret				 						ExceptionReturn(Supervisor)				{R}			{0001000 00010 00000 000 00000 1110011}
-srl		RV32I,RV64I	srl rd, rs1, rs2		 						x[rd] = x[rs1] >>u x[rs2]				{R}			{0000000 101 0110011}
-srli		RV32I,RV64I	srli rd, rs1, shamt		 						x[rd] = x[rs1] >>u shamt				{Shift-I}		{000000 101 0010011}
-srliw		RV64I		srliw rd, rs1, shamt		 						x[rd] = sext(x[rs1][31:0] >>u shamt)			{Shift-I}		{000000 101 0011011}
-srlw		RV64I		srlw rd, rs1, rs2		 						x[rd] = sext(x[rs1][31:0] >>u x[rs2][4:0])		{R}			{0000000 101 0111011}
-sub		RV32I,RV64I	sub rd, rs1, rs2		 						x[rd] = x[rs1] - x[rs2]					{R}			{0100000 000 0110011}
-subw		RV64I		subw rd, rs1, rs2		 						x[rd] = sext(x[rs1] - x[rs2])[31:0]			{R}			{0100000 000 0111011}
-sw		RV32I,RV64I	sw rs2, offset(rs1)		 						M[x[rs1] + sext(off)] = x[rs2][31:0]			{S}			{010 0100011}
-tail		RV32I,RV64I	tail symbol			 						pc = &symbol; clobber x[6]				{}			{}
-wfi		RV32I,RV64I	wfi				 						while (noInterruptsPending) idle			{R}			{0001000 00101 00000 000 00000 1110011}
-xor		RV32I,RV64I	xor rd, rs1, rs2		 						x[rd] = x[rs1] ˆ x[rs2]					{R}			{0000000 100 0110011}
-xori		RV32I,RV64I	xori rd, rs1, imm		 						x[rd] = x[rs1] ˆ sext(imm)				{I}			{100 0010011}
+NAME	EXTENTIONS	FORMAT	ACTUAL	DESCRIPTION	Columns	Encodings
+add.uw	Zba	add.uw rd, rs1, rs2	 	X(rd) = X(rs2) + EXTZ(X(rs1)[31..0])	{R}	{0000100 000 0111011}
+add	RV32I,RV64I	add rd, rs1, rs2	 	x[rd] = x[rs1] + x[rs2]	{R}	{0000000 000 0110011}
+addi	RV32I,RV64I	addi rd, rs1, imm	 	x[rd] = x[rs1] + sext[imm]	{I}	{000 0010011}
+addiw	RV64I	addiw rd, rs1, imm	 	x[rd] = sext((x[rs1] + sext(imm))[31:0])	{I}	{000 0011011}
+addw	RV64I	addw rd, rs1, rs2	 	x[rd] = sext((x[rs1] + x[rs2])[31:0])	{R}	{0000000 000 0111011}
+amoadd.d	RV64A	amoadd.d rd, rs2, (rs1)	 	x[rd] = AMO64(M[x[rs1]] + x[rs2])	{AMO-R}	{00000 011}
+amoadd.w	RV32A,RV64A	amoadd.w rd, rs2, (rs1)	 	x[rd] = AMO32(M[x[rs1]] + x[rs2])	{AMO-R}	{00000 010}
+amoand.d	RV64A	amoand.d rd, rs2, (rs1)	 	x[rd] = AMO64(M[x[rs1]] & x[rs2]])	{AMO-R}	{01100 011}
+amoand.w	RV32A,RV64A	amoand.w rd, rs2, (rs1)	 	x[rd] = AMO32(M[x[rs1]] & x[rs2]])	{AMO-R}	{01100 010}
+amomax.d	RV64A	amomax.d rd, rs2, (rs1)	 	x[rd] = AMO64(M[x[rs1]] MAX x[rs2]])	{AMO-R}	{10100 011}
+amomax.w	RV32A,RV64A	amomax.w rd, rs2, (rs1)	 	x[rd] = AMO32(M[x[rs1]] MAX x[rs2]])	{AMO-R}	{10100 010}
+amomaxu.d	RV64A	amomaxu.d rd, rs2, (rs1)	 	x[rd] = AMO64(M[x[rs1]] MAXU x[rs2])	{AMO-R}	{11100 011}
+amomaxu.w	RV32A,RV64A	amomaxu.w rd, rs2, (rs1)	 	x[rd] = AMO32(M[x[rs1]] MAXU x[rs2])	{AMO-R}	{11100 010}
+amomin.d	RV64A	amomin.d rd, rs2, (rs1)	 	x[rd] = AMO64(M[x[rs1]] MIN x[rs2])	{AMO-R}	{10000 011}
+amomin.w	RV32A,RV64A	amomin.w rd, rs2, (rs1)	 	x[rd] = AMO32(M[x[rs1]] MIN x[rs2])	{AMO-R}	{10000 010}
+amominu.d	RV64A	amominu.d rd, rs2, (rs1)	 	x[rd] = AMO64(M[x[rs1]] MINU x[rs2])	{AMO-R}	{11000 011}
+amominu.w	RV32A,RV64A	amominu.w rd, rs2, (rs1)	 	x[rd] = AMO32(M[x[rs1]] MINU x[rs2])	{AMO-R}	{11000 010}
+amoor.d	RV64A	amoor.d rd, rs2, (rs1)	 	x[rd] = AMO64(M[x[rs1]] | x[rs2])	{AMO-R}	{01000 011}
+amoor.w	RV32A,RV64A	amoor.w rd, rs2, (rs1)	 	x[rd] = AMO32(M[x[rs1]] | x[rs2])	{AMO-R}	{01000 010}
+amoswap.d	RV64A	amoswap.d rd, rs2, (rs1)	 	x[rd] = AMO64(M[x[rs1]] SWAP x[rs2])	{AMO-R}	{00001 011}
+amoswap.w	RV32A,RV64A	amoswap.w rd, rs2, (rs1)	 	x[rd] = AMO32(M[x[rs1]] SWAP x[rs2])	{AMO-R}	{00001 010}
+amoxor.d	RV64A	amoxor.d rd, rs2, (rs1)	 	x[rd] = AMO64(M[x[rs1]] ˆ x[rs2])	{AMO-R}	{00100 011}
+amoxor.w	RV32A,RV64A	amoxor.w rd, rs2, (rs1)	 	x[rd] = AMO32(M[x[rs1]] ^ x[rs2])	{AMO-R}	{00100 010}
+and	RV32I,RV64I	and rd, rs1, rs2	 	x[rd] = x[rs1] & x[rs2]	{R}	{000000 111 0110011}
+andi	RV32I,RV64I	andi rd, rs1, immediate	 	x[rd] = x[rs1] & sext(imm)	{I}	{111 0010011}
+andn	Zbb	andn rd, rs1, rs2	 	X(rd) = X(rs1) & ~X(rs2)	{R}	{0100000 111 0110011}
+auipc	RV32I,RV64I	auipc rd, imm	 	x[rd] = pc + sext(imm[31:12] << 12)	{U}	{0010111}
+bclr	Zbs	bclr rd, rs1, rs2	 	X(rd) = X(rs1) & ~(1 << (X(rs2) & (XLEN - 1)))	{R}	{0100100 001 0110011}
+bclri	Zbs	bclri rd, rs1, shamt	 	X(rd) = X(rs1) & ~(1 << (shamt & (XLEN - 1)))	{}	{}
+beq	RV32I,RV64I	beq rs1, off	 	if (rs1 == rs2) pc += sext(off)	{B}	{000 1100011}
+beqz	RV32I,RV64I	beqz rs1, off	beq rs1, x0, offset	if (rs1 == 0) pc += sext(off)	{B}	{off[12] off[10:5] x0 rs1 000 off[4:1] off[11] 1100011}
+bext	Zbs	bext rd, rs1, rs2	 	X(rd) = (X(rs1) >> (X(rs2) & (XLEN - 1))) & 1	{R}	{0100100 101 0110011}
+bexti	Zbs	bexti rd, rs1, shamt	 	X(rd) = (X(rs1) >> (shamt & (XLEN - 1))) & 1	{}	{}
+bge	RV32I,RV64I	bge rs1, rs2, off	 	if (rs1 ≥s rs2) pc += sext(off)	{B}	{101 1100011}
+bgeu	RV32I,RV64I	bgeu rs1, rs2, off	 	if (rs1 ≥u rs2) pc += sext(off)	{B}	{111 1100011}
+bgez	RV32I,RV64I	bgez rs1, off	bge rs1, x0, offset	if (rs1 ≥s 0) pc += sext(off)	{B}	{off[12] off[10:5] x0 rs1 101 off[4:1] off[11] 1100011}
+bgt	RV32I,RV64I	bgt rs1, rs2, off	blt rs2, rs1, offset	if (rs1 >s rs2) pc += sext(off)	{B}	{off[12] off[10:5] rs1 rs2 100 off[4:1] off[11] 1100011}
+bgtu	RV32I,RV64I	bgtu rs1, rs2, off	bltu rs2, rs1, offset	if (rs1 >u rs2) pc += sext(off)	{B}	{off[12] off[10:5] rs1 rs2 110 off[4:1] off[11] 1100011}
+bgtz	RV32I,RV64I	bgtz rs2, off	blt x0, rs2, offset	if (rs2 >s 0) pc += sext(off)	{B}	{off[12] off[10:5] x0 rs2 100 off[4:1] off[11] 1100011}
+ble	RV32I,RV64I	ble rs1, rs2, off	bge rs2, rs1, offset	if (rs1 ≤s rs2) pc += sext(off)	{B}	{off[12] off[10:5] rs1 rs2 101 off[4:1] off[11] 1100011}
+bleu	RV32I,RV64I	bleu rs1, rs2, off	bgeu rs2, rs1, offset	if (rs1 ≤u rs2) pc += sext(off)	{B}	{off[12] off[10:5] rs1 rs2 111 off[4:1] off[11] 1100011}
+blez	RV32I,RV64I	blez rs2, off	bge x0, rs2, offset	if (rs2 ≤s 0) pc += sext(off)	{B}	{off[12] off[10:5] x0 rs2 101 off[4:1] off[11] 1100011}
+blt	RV32I,RV64I	blt rs1, rs2, off	 	if (rs1 <s rs2) pc += sext(off)	{B}	{100 1100011}
+bltz	RV32I,RV64I	bltz rs1, offset	blt rs1, x0, offset	if (rs1 <s 0) pc += sext(offset)	{B}	{off[12] off[10:5] x0 rs2 100 off[4:1] off[11] 1100011}
+bltu	RV32I,RV64I	bltu rs1, rs2, off	 	if (rs1 <u rs2) pc += sext(offset)	{B}	{110 1100011}
+bne	RV32I,RV64I	bne rs1, rs2, off	 	if (rs1 != rs2) pc += sext(offset)	{B}	{001 1100011}
+bnez	RV32I,RV64I	bnez rs1, off	bne rs1, x0, offset	if (rs1 != 0) pc += sext(offset)	{B}	{off[12] off[10:5] x0 rs2 001 off[4:1] off[11] 1100011}
+c.add	RV32IC,RV64IC	c.add rd, rs2	 	x[rd] = x[rd] + x[rs2]	{C-Arith-R}	{100 1 10}
+c.addi	RV32IC,RV64IC	c.addi rd, imm	 	x[rd] = x[rd] + sext(imm)	{C-Arith-I}	{000 01}
+c.addi16sp	RV32IC,RV64IC	c.addi16sp imm	 	x[2] = x[2] + sext(imm)	{3 1 5 1 1 2 1 2}	{011 imm[9] 00010 imm[4] imm[6] imm[8:7] imm[5] 01}
+c.addi4spn	RV32IC,RV64IC	c.addi4spn rd', uimm	 	x[8+rd'] = x[2] + uimm	{3 2 4 1 1 3 2}	{000 uimm[5:4] uimm[9:6] uimm[2] uimm[3] rd' 00}
+c.addiw	RV64IC	c.addiw rd, imm	 	x[rd] = sext((x[rd] + sext(imm))[31:0])	{C-Arith-I}	{001 01}
+c.and	RV32IC,RV64IC	c.and rd', rs2'	 	x[8+rd'] = x[8+rd'] & x[8+rs2']	{C-Logic-R}	{100011 11 01}
+c.andw	RV64IC	c.addw rd', rs2'	 	x[8+rd'] = sext(x[8+rd'] + x[8+rs2'])[31:0])	{C-Logic-R}	{100111 01 01}
+c.andi	RV32IC,RV64IC	c.andi rd', imm	 	x[8+rd'] = x[8+rd'] & sext(imm)	{C-Logic-I}	{100 10 01}
+c.beqz	RV32IC,RV64IC	c.beqz rs1', offset	 	if (x[8+rs1′] == 0) pc += sext(offset)	{3 2 1 3 2 2 1 2}	{110 off[8] off[4:3] rs1' off[7:6] off[2:1] off[5] 01}
+c.bnez	RV32IC,RV64IC	c.bnez rs1', off	 	if (x[8+rs1'] != 0) pc += sext(off)	{3 2 1 3 2 2 1 2}	{111 off[8] off[4:3] rs1' off[7:6] off[2:1] off[5] 01}
+c.ebreak	RV32IC,RV64IC	c.ebreak	 	RaiseException(Breakpoint)	{3 1 5 5 2}	{100 1 00000 00000 10}
+c.fld	RV32DC,RV64DC	c.fld rd′, uimm(rs1')	 	f[8+rd′] = M[x[8+rs1′] + uimm][63:0]	{3 3 3 2 3 2}	{001 uimm[5:3] rs1' uimm[7:6] rd' 00}
+c.fldsp	RV32DC,RV64DC	c.fldsp rd, uimm(x2)	 	f[rd] = M[x[2] + uimm][63:0]	{3 1 5 2 3 2}	{001 uimm[5] rd uimm[4:3] uimm[8:6] 10}
+c.flw	RV32FC	c.flw rd′, uimm(rs1')	 	f[8+rd′] = M[x[8+rs1′] + uimm][31:0]	{C-LoadStore}	{011 rd'}
+c.flwsp	RV32FC	c.flwsp rd, uimm(x2)	 	f[rd] = M[x[2] + uimm][31:0]	{3 1 5 3 2 2}	{011 uimm[5] rd uimm[4:2] uimm[7:6] 10}
+c.fsd	RV32DC,RV64DC	c.fsd rs2′, uimm(rs1′)	 	M[x[8+rs1'] + uimm][63:0] = f[8+rs2′]	{3 3 3 2 3 2}	{101 uimm[5:3] rs1' uimm[7:6] rs2' 00}
+c.fsdsp	RV32DC,RV64DC	c.fsdsp rs2, uimm(x2)	 	M[x[2] + uimm][63:0] = f[rs2]	{3 3 3 5 2}	{101 uimm[5:3] uimm[8:6] rs2 10}
+c.fsw	RV32FC	c.fsw rs2′, uimm(rs1′)	 	M[x[8+rs1′] + uimm][31:0] = f[8+rs2′]	{C-LoadStore}	{111 rs2'}
+c.fswsp	RV32FC	c.fswsp rs2, uimm(x2)	 	M[x[2] + uimm][31:0] = f[rs2]	{3 4 2 5 2}	{111 uimm[5:2] uimm[7:6] rs2 10}
+c.j	RV32IC,RV64IC	c.j off	 	pc += sext(offset)	{3 1 1 2 1 1 1 3 1 2}	{101 off[11] off[4] off[9:8] off[10] off[6] off[7] off[3:1] off[5] 01}
+c.jal	RV32IC	c.jal off	 	x[1] = pc+2; pc += sext(offset)	{3 1 1 2 1 1 1 3 1 2}	{001 off[11] off[4] off[9:8] off[10] off[6] off[7] off[3:1] off[5] 01}
+c.jalr	RV32IC,RV64IC	c.jalr rs1	 	t = pc+2; pc = x[rs1]; x[1] = t	{3 1 5 5 2}	{100 1 rs1 00000 10}
+c.jr	RV32IC,RV64IC	c.jr rs1	 	pc = x[rs1]	{3 1 5 5 2}	{100 0 rs1 00000 10}
+c.ld	RV64IC	c.ld rd', uimm(rs1')	 	x[8+rd'] = M[x[8+rs1'] + uimm][63:0]	{3 3 3 2 3 2}	{011 uimm[5:3] rs1' uimm[7:6] rs2' 00}
+c.ldsp	RV64IC	c.ldsp rd, uimm(x2)	 	x[rd] = M[x[2] + uimm][63:0]	{3 5 5 2 3 2}	{011 uimm[5] rd uimm[4:3] uimm[8:6] 10}
+c.li	RV32IC,RV64IC	c.li rd, imm	 	x[rd] = sext(imm)	{3 1 5 5 2}	{010 imm[5] rd imm[4:0] 01}
+c.lui	RV32IC,RV64IC	c.lui rd, imm	 	x[rd] = sext(imm[17:12] << 12)	{3 1 5 5 2}	{011 imm[17] rd imm[16:12] 01}
+c.lw	RV32IC,RV64IC	c.lw rd', uimm(rs1')	 	x[8+rd'] = sext(M[x[8+rs1'] + uimm][31:0])	{C-LoadStore}	{010 rd'}
+c.lwsp	RV32IC,RV64IC	c.lwsp rd, uimm(x2)	 	x[rd] = sext(M[x[2] + uimm][31:0])	{3 1 5 3 2 2}	{010 uimm[5] rd uimm[4:2] uimm[7:6] 10}
+c.mv	RV32IC,RV64IC	c.mv rd, rs2	 	x[rd] = x[rs2]	{3 1 5 5 2}	{100 0 rd rs2 10}
+c.or	RV32IC,RV64IC	c.or rd', rs2'	 	x[8+rd'] = x[8+rd'] | x[8+rs2']	{6 3 2 3 2}	{100011 rd' 10 rs2' 01}
+c.sd	RV64IC	c.sd rs2', uimm(rs1')	 	M[x[8+rs1'] + uimm][63:0] = x[8+rs2']	{C-LoadStore}	{111 rs2'}
+c.sdsp	RV64IC	c.sdsp rs2, uimm(x2)	 	M[x[2] + uimm][63:0] = x[rs2]	{3 3 3 5 2}	{111 uimm[5:3] uimm[8:6] rs2 10}
+c.slli	RV32IC,RV64IC	c.slli rd, uimm	 	x[rd] = x[rd] << uimm	{3 1 5 5 2}	{000 uimm[5] rs uimm[4:0] 10}
+c.srai	RV32IC,RV64IC	c.srai rd', uimm	 	x[8+rd'] = x[8+rd'] >>s uimm	{3 1 2 3 5 2}	{100 uimm[5] 01 rd' uimm[4:0] 01}
+c.srli	RV32IC,RV64IC	c.srli rd', uimm	 	x[8+rd'] = x[8+rd'] >>u uimm	{3 1 2 3 5 2}	{100 uimm[5] 00 rd' uimm[4:0] 01}
+c.sub	RV32IC,RV64IC	c.sub rd', rs2'	 	x[8+rd'] = x[8+rd'] - x[8+rs2']	{6 3 2 3 2}	{100011 rd' 00 rs2' 01}
+c.subw	RV64IC	c.subw rd', rs2'	 	x[8+rd'] = sext((x[8+rd'] - x[8+rs2'])[31:0])	{6 3 2 3 2}	{100111 rd' 00 rs2' 01}
+c.sw	RV64IC	c.sw rs2', uimm(rs1')	 	M[x[8+rs1'] + uimm][31:0] = x[8+rs2']	{C-LoadStore}	{110 rs2'}
+c.swsp	RV32IC,RV64IC	c.swsp rs2, uimm(x2)	 	M[x[2] + uimm][31:0] = x[rs2]	{3 4 2 5 2}	{110 uimm[5:2] uimm[7:6] rs2 10}
+c.xor	RV32IC,RV64IC	c.xor rd', rs2'	 	x[8+rd'] = x[8+rd'] ˆ x[8+rs2']	{6 3 2 3 2}	{100011 rd' 01 rs2' 01}
+call	RV32I,RV64I	call rd, symbol	auipc rd=x1, offsetHi; jalr rd=x1, offsetLo(rd)	x[rd] = pc+8; pc = &symbol	{}	{}
+csrr	RV32I,RV64I	csrr rd, csr	csrrs rd, csr, x0	x[rd] = CSRs[csr]	{CSR-I}	{csr x0 010 rd 1110011}
+csrc	RV32I,RV64I	csrc csr, rs1	csrrc x0, csr, rs1	CSRs[csr] &= ∼x[rs1]	{CSR-I}	{csr rs1 011 x0 1110011}
+csrci	RV32I,RV64I	csrci csr, zimm[4:0]	csrrci x0, csr, zimm	CSRs[csr] &= ∼zimm	{CSRI-I}	{csr zimm[4:0] 111 x0 1110011}
+csrrc	RV32I,RV64I	csrrc rd, csr, rs1	 	t = CSRs[csr]; CSRs[csr] = t &∼x[rs1]; x[rd] = t	{CSR-I}	{011}
+csrrci	RV32I,RV64I	csrrci rd, csr, zimm[4:0]	 	t = CSRs[csr]; CSRs[csr] = t &∼zimm; x[rd] = t	{CSRI-I}	{111}
+csrrs	RV32I,RV64I	csrrs rd, csr, rs1	 	t = CSRs[csr]; CSRs[csr] = t | x[rs1]; x[rd] = t	{CSR-I}	{010}
+csrrsi	RV32I,RV64I	csrrsi rd, csr, zimm[4:0]	 	t = CSRs[csr]; CSRs[csr] = t | zimm; x[rd] = t	{CSRI-I}	{110}
+csrrw	RV32I,RV64I	csrrw rd, csr, rs1	 	t = CSRs[csr]; CSRs[csr] = x[rs1]; x[rd] = t0	{CSR-I}	{001}
+csrrwi	RV32I,RV64I	csrrwi rd, csr, zimm[4:0]	 	x[rd] = CSRs[csr]; CSRs[csr] = zimm	{CSRI-I}	{101}
+csrs	RV32I,RV64I	csrs csr, rs1	csrrs x0, csr, rs1	CSRs[csr] |= x[rs1]	{CSR-I}	{csr rs1 011 x0 1110011}
+csrsi	RV32I,RV64I	csrsi csr, zimm[4:0]	csrrsi x0, csr, zimm	CSRs[csr] |= zimm	{CSRI-I}	{csr zimm[4:0] 110 x0 1110011}
+csrw	RV32I,RV64I	csrw csr, rs1	csrrw x0, csr, rs1	CSRs[csr] = x[rs1]	{CSR-I}	{csr rs1 001 x0 1110011}
+csrwi	RV32I,RV64I	csrwi csr, zimm[4:0]	csrrwi x0, csr, zimm	CSRs[csr] = zimm	{CSRI-I}	{csr zimm[4:0] 101 x0 1110011}
+div	RV32M,RV64M	div rd, rs1, rs2	 	x[rd] = x[rs1] ÷s x[rs2]	{R}	{0000001 100 0110011}
+divu	RV32M,RV64M	divu rd, rs1, rs2	 	x[rd] = x[rs1] ÷u x[rs2]	{R}	{0000001 101 0110011}
+divuw	RV64M	divuw rd, rs1, rs2	 	x[rd] = sext(x[rs1][31:0] ÷u x[rs2][31:0])	{R}	{0000001 101 0111011}
+divw	RV64M	divw rd, rs1, rs2	 	x[rd] = sext(x[rs1][31:0] ÷s x[rs2][31:0])	{R}	{0000001 100 0111011}
+ebreak	RV32I,RV64I	ebreak	 	RaiseException(Breakpoint)	{I}	{000000000001 00000 000 00000 1110011}
+ecall	RV32I,RV64I	ecall	 	RaiseException(EnvironmentCall)	{I}	{000000000000 00000 000 00000 1110011}
+fabs.d	RV32D,RV64D	fabs.d rd, rs1	fsgnjx.d rd, rs1, rs1	f[rd] = abs([rs1])	{R}	{0010001 rs1 rs1 010 rd 1010011}
+fabs.s	RV32F,RV64F	fabs.s rd, rs1	fsgnjx.s rd, rs1, rs1	f[rd] = abs([rs1])	{R}	{0010000 rs1 rs1 010 rd 1010011}
+fadd.d	RV32D,RV64D	fadd.d rd, rs1, rs2	 	f[rd] = f[rs1] + f[rs2]	{F-ARITH-R}	{0000001}
+fadd.s	RV32F,RV64F	fadd.s rd, rs1, rs2	 	f[rd] = f[rs1] + f[rs2]	{F-ARITH-R}	{0000000}
+fclass.d	RV32D,RV64D	fclass.d rd, rs1, rs2	 	x[rd] = classify d(f[rs1])	{R}	{1110001 00000 rs1 001 rd 1010011}
+fclass.s	RV32F,RV64F	fclass.s rd, rs1, rs2	 	x[rd] = classify s(f[rs1])	{R}	{1110000 00000 rs1 001 rd 1010011}
+fcvt.d.l	RV64D	fcvt.d.l rd, rs1, rs2	 	f[rd] = f64 s64(x[rs1])	{FCVT-R}	{1101001 00010}
+fcvt.d.lu	RV64D	fcvt.d.lu rd, rs1, rs2	 	f[rd] = f64 u64(x[rs1])	{FCVT-R}	{1101001 00011}
+fcvt.d.s	RV32D,RV64D	fcvt.d.s rd, rs1, rs2	 	f[rd] = f64 f32(x[rs1])	{FCVT-R}	{0100001 00000}
+fcvt.d.w	RV32D,RV64D	fcvt.d.w rd, rs1, rs2	 	f[rd] = f64 s32(x[rs1])	{FCVT-R}	{1101001 00000}
+fcvt.d.wu	RV32D,RV64D	fcvt.d.wu rd, rs1, rs2	 	f[rd] = f64 u32(x[rs1])	{FCVT-R}	{1101001 00001}
+fcvt.l.d	RV64D	fcvt.l.d rd, rs1, rs2	 	x[rd] = s64 f64(f[rs1])	{FCVT-R}	{1100001 00010}
+fcvt.l.s	RV64F	fcvt.l.s rd, rs1, rs2	 	x[rd] = s64 f32(f[rs1])	{FCVT-R}	{1100000 00010}
+fcvt.lu.d	RV64D	fcvt.lu.d rd, rs1, rs	 	x[rd] = u64 f64(f[rs1])	{FCVT-R}	{1100001 00011}
+fcvt.lu.s	RV64F	fcvt.lu.s rd, rs1, rs	 	x[rd] = u64 f32(f[rs1])	{FCVT-R}	{1100000 00011}
+fcvt.s.d	RV32D,RV64D	fcvt.s.d rd, rs1, rs2	 	x[rd] = f32 f54(f[rs1])	{FCVT-R}	{0100000 00001}
+fcvt.s.l	RV64F	fcvt.s.l rd, rs1, rs2	 	x[rd] = f32 s64(f[rs1])	{FCVT-R}	{1101000 00010}
+fcvt.s.lu	RV64F	fcvt.s.lu rd, rs1, rs	 	x[rd] = f32 u64(f[rs1])	{FCVT-R}	{1101000 00011}
+fcvt.s.w	RV32F,RV64F	fcvt.s.w rd, rs1, rs2	 	x[rd] = f32 s32(f[rs1])	{FCVT-R}	{1101000 00000}
+fcvt.s.wu	RV32F,RV64F	fcvt.s.wu rd, rs1, rs	 	x[rd] = f32 u32(f[rs1])	{FCVT-R}	{1101000 00001}
+fcvt.w.d	RV32D,RV64D	fcvt.w.d rd, rs1, rs2	 	x[rd] = sext(s32 f64(f[rs1]))	{FCVT-R}	{1100001 00000}
+fcvt.wu.d	RV32D,RV64D	fcvt.wu.d rd, rs1, rs	 	x[rd] = sext(u32 f64(f[rs1]))	{FCVT-R}	{1100001 00001}
+fcvt.w.s	RV32f,RV64f	fcvt.w.s rd, rs1, rs2	 	x[rd] = sext(s32 f32(f[rs1]))	{FCVT-R}	{1100000 00000}
+fcvt.wu.s	RV32F,RV64F	fcvt.wu.s rd, rs1, rs	 	x[rd] = sext(u32 f32(f[rs1]))	{FCVT-R}	{1100000 00001}
+fdiv.d	RV32D,RV64D	fdiv.d rd, rs1, rs2	 	f[rd] = f[rs1] / f[rs2]	{F-ARITH-R}	{0001101}
+fdiv.s	RV32F,RV64F	fdiv.s rd, rs1, rs2	 	f[rd] = f[rs1] / f[rs2]	{F-ARITH-R}	{0001100}
+fence	RV32I,RV64I	fence pred, succ	 	Fence(pred, succ)	{R}	{0000 pred succ 00000 000 00000 0001111}
+fence.i	RV32I,RV64I	fence.i	 	Fence(Store, Fetch)	{I}	{000000000000 00000 001 00000 0001111}
+feq.d	RV32D,RV64D	feq.d rd, rs1, rs2	 	f[rd] = f[rs1] == f[rs2]	{R}	{1010001 010 1010011}
+feq.s	RV32F,RV64F	feq.s rd, rs1, rs2	 	f[rd] = f[rs1] == f[rs2]	{R}	{1010000 010 1010011}
+fld	RV32D,RV64D	fld rd, offset(rs1)	 	f[rd] = M[x[rs1]] + sext(off)[63:0]	{I}	{offset[11:0] rs1 011 rd 0000111}
+fle.d	RV32D,RV64D	fle.d rd, rs1, rs2	 	x[rd] = f[rs1] <= f[rs2]	{R}	{1010001 000 1010011}
+fle.s	RV32F,RV64F	fle.s rd, rs1, rs2	 	x[rd] = f[rs1] <= f[rs2]	{R}	{1010000 000 1010011}
+flt.d	RV32D,RV64D	fle.t rd, rs1, rs2	 	x[rd] = f[rs1] < f[rs2]	{R}	{1010001 001 1010011}
+flt.s	RV32F,RV64F	flt.s rd, rs1, rs2	 	x[rd] = f[rs1] < f[rs2]	{R}	{1010000 001 1010011}
+flw	RV32F,RV64F	flw rd, offset(rs1)	 	f[rd] = M[x[rs1]] + sext(off)[31:0] 	{I}	{offset[11:0] rs1 010 rd 0000111}
+fmadd.d	RV32D,RV64D	fmadd.d rd, rs1, rs2, rs3	 	f[rd] = f[rs1] * f[rs2] + f[rs3]	{R4}	{01 1000011}
+fmadd.s	RV32F,RV64F	fmadd.s rd, rs1, rs2, rs3	 	f[rd] = f[rs1] * f[rs2] + f[rs3]	{R4}	{00 1000011}
+fmax.d	RV32D,RV64D	fmax.d rd, rs1, rs2	 	f[rd] = max(f[rs1], f[rs2])	{R}	{0010101 001 1010011}
+fmax.s	RV32F,RV64F	fmax.s rd, rs1, rs2	 	f[rd] = max(f[rs1], f[rs2])	{R}	{0010100 001 1010011}
+fmin.d	RV32D,RV64D	fmin.d rd, rs1, rs2	 	f[rd] = min(f[rs1], f[rs2])	{R}	{0010101 000 1010011}
+fmin.s	RV32F,RV64F	fmin.s rd, rs1, rs2	 	f[rd] = min(f[rs1], f[rs2])	{R}	{0010100 000 1010011}
+fmsub.d	RV32D,RV64D	fmsub.d rd, rs1, rs2, rs3	 	f[rd] = f[rs1] * f[rs2] - f[rs3]	{R4}	{01 1000111}
+fmsub.s	RV32F,RV64F	fmsub.s rd, rs1, rs2, rs3	 	f[rd] = f[rs1] * f[rs2] - f[rs3]	{R4}	{00 1000111}
+fmul.d	RV32D,RV64D	fmul.d rd, rs1, rs2	 	f[rd] = f[rs1] * f[rs2]	{F-ARITH-R}	{0001001}
+fmul.s	RV32F,RV64F	fmul.s rd, rs1, rs2	 	f[rd] = f[rs1] * f[rs2]	{F-ARITH-R}	{0001000}
+fmv.d	RV32D,RV64D	fmv.d rd, rs1	fsgnj.d rd, rs1, rs1	f[rd] = f[rs1]	{R}	{0010001 rs1 rs1 000 rd 1010011}
+fmv.d.x	RV64D	fmv.d.x rd, rs1, rs2	 	f[rd] = x[rs1][63:0]	{R}	{1111001 00000 rs1 000 rs 1010011}
+fmv.s	RV32F,RV64F	fmv.s rd, rs1	fsgnj.s rd, rs1, rs1	f[rd] = f[rs1]	{R}	{0010000 rs1 rs1 000 rd 1010011}
+fmv.w.x	RV32F,RV64F	fmv.w.x rd, rs1, rs2	 	f[rd] = x[rs1][31:0]	{R}	{1111000 00000 rs1 000 rd 1010011}
+fmv.x.d	RV64D	fmv.x.d rd, rs1, rs2	 	x[rd] = f[rs1][63:0]	{R}	{1110001 00000 rs1 000 rd 1010011}
+fmv.x.w	RV32F,RV64F	fmv.x.w rd, rs1, rs2	 	x[rd] = sext(f[rs1][31:0])	{R}	{1110000 00000 rs1 000 rd 1010011}
+fneg.d	RV32D,RV64D	fneg.d rd, rs1	fsgnjn.d rd, rs1, rs1	f[rd] = -f[rs1]	{R}	{0010001 rs1 rs1 001 rd 1010011}
+fneg.s	RV32F,RV64F	fneg.s rd, rs1	fsgnjn.s rd, rs1, rs1	f[rd] = -f[rs1]	{R}	{0010000 rs1 rs1 001 rd 1010011}
+fnmadd.d	RV32D,RV64D	fnmadd.d rd, rs1, rs2, rs3	 	f[rd] = -f[rs1] * f[rs2] - f[rs3]	{R4}	{01 1001111}
+fnmadd.s	RV32F,RV64F	fnmadd.s rd, rs1, rs2, rs3	 	f[rd] = -f[rs1] * f[rs2] - f[rs3]	{R4}	{00 1001111}
+fnmsub.d	RV32D,RV64D	fnmsub.d rd, rs1, rs2, rs3	 	f[rd] = -f[rs1] * f[rs2] + f[rs3]	{R4}	{01 1001011}
+fnmsub.s	RV32F,RV64F	fnmsub.s rd, rs1, rs2, rs3	 	f[rd] = -f[rs1] * f[rs2] + f[rs3]	{R4}	{00 1001011}
+frcsr	RV32F,RV64F	frcsr rd	csrrs rd, fcsr, x0	x[rd] = CSRs[fcsr]	{CSR-I}	{fcsr rs1 001 rd 1110011}
+frflags	RV32F,RV64F	frflags rd	csrrs rd, fflags, x0	x[rd] = CSRs[fflags]	{CSR-I}	{fflags rs1 001 rd 1110011}
+frrm	RV32F,RV64F	frrm rd	csrrs rd, frm, x0	x[rd] = CSRs[frm]	{CSR-I}	{frm rs1 001 rd 1110011}
+fscsr	RV32F,RV64F	fscsr rd, rs1	csrrw rd, fcsr, rs1	t = CSRs[fcsr]; CSRs[fcsr] = x[rs1]; x[rd] = t	{CSR-I}	{fcsr rs1 001 rd 1110011}
+fsd	RV32D,RV64D	fsd rs2, offset(rs1)	 	M[x[rs1] + sext(offset)] = f[rs2][63:0]	{S}	{011 0100111}
+fsflags	RV32F,RV64F	fsflags rd, rs1	csrrw rd=x0, fflags, rs1	t = CSRs[fflags]; CSRs[fflags] = x[rs1]; x[rd] = t	{CSR-I}	{fflags rs1 001 rd 1110011}
+fsgnj.d	RV32D,RV64D	fsgnj.d rd, rs1, rs2	 	f[rd] = {f[rs2][63], f[rs1][62:0]}	{R}	{0010001 000 1010011}
+fsgnj.s	RV32F,RV64F	fsgnj.s rd, rs1, rs2	 	f[rd] = {f[rs2][31], f[rs1][30:0]}	{R}	{0010000 000 1010011}
+fsgnjn.d	RV32D,RV64D	fsgnjn.d rd, rs1, rs2	 	f[rd] = {~f[rs2][63], f[rs1][62:0]}	{R}	{0010001 001 1010011}
+fsgnjn.s	RV32F,RV64F	fsgnjn.s rd, rs1, rs2	 	f[rd] = {~f[rs2][31], f[rs1][30:0]}	{R}	{0010000 001 1010011}
+fsgnjx.d	RV32D,RV64D	fsgnjx.d rd, rs1, rs2	 	f[rd] = {f[rs1][63] ˆ f[rs2][63], f[rs1][62:0]}	{R}	{0010001 010 1010011}
+fsgnjx.s	RV32F,RV64F	fsgnjx.s rd, rs1, rs2	 	f[rd] = {f[rs1][31] ˆ f[rs2][31], f[rs1][30:0]}	{R}	{0010000 010 1010011}
+fsqrt.d	RV32D,RV64D	fsqrt.d rd, rs1, rs2	 	f[rd] = sqrt(f[rs1])	{R}	{0101101 00000 rs1 rm rd 1010011}
+fsqrt.s	RV32F,RV64F	fsqrt.s rd, rs1, rs2	 	f[rd] = sqrt(f[rs1])	{R}	{0101100 00000 rs1 rm rd 1010011}
+fsrm	RV32F,RV64F	fsrm rd, rs1	csrrw rd=x0, frm, rs1	t = CSRs[frm]; CSRs[frm] = x[rs1]; x[rd] = t	{}	{}
+fsub.d	RV32D,RV64D	fsub.d rd, rs1, rs2	 	f[rd] = f[rs1] - f[rs2]	{F-ARITH-R}	{0000101}
+fsub.s	RV32F,RV64F	fsub.s rd, rs1, rs2	 	f[rd] = f[rs1] - f[rs2]	{F-ARITH-R}	{0000100}
+fsw	RV32F,RV64F	fsw rs2, offset(rs1)	 	M[x[rs1] + sext(off)] = f[rs2][31:0]	{S}	{010 0100111}
+j	RV32I,RV64I	j off	jal x0, offset	pc += sext(off)	{J}	{off[20] off[10:1] off[11] off[19:12] x0 1101111}
+jal	RV32I,RV64I	jal rd, off	 	x[rd] = pc+4; pc += sext(off)	{J}	{1101111}
+jalr	RV32I,RV64I	jalr rd, off(rs1)	 	t =pc+4; pc=(x[rs1]+sext(off))&∼1; x[rd]=t	{Off-I}	{000 1100111}
+jr	RV32I,RV64I	jr rs1	jalr x0, 0(rs1)	pc = x[rs1]	{Off-I}	{0 rs1 000 x0 1100111}
+la	RV32I,RV64I	la rd, symbol	RV32I: auipc rd, offsetHi; lw rd, offsetLo(rd); RV64I: auipc rd, offsetHi; ld rd, offsetLo(rd); Otherwise: auipc rd, offsetHi; addi rd, rd, offsetLo	x[rd] = &symbol	{}	{}
+lb	RV32I,RV64I	lb rd, offset(rs1)	 	x[rd] = sext(M[x[rs1] + sext(offset)][7:0])	{I}	{000 0000011}
+lbu	RV32I,RV64I	lbu rd, offset(rs1)	 	x[rd] = M[x[rs1] + sext(offset)][7:0]	{I}	{100 0000011}
+ld	RV64I	ld rd, off(rs1)	 	x[rd] = M[x[rs1] + sext(off)][63:0]	{Off-I}	{011 0000011}
+lh	RV32I,RV64I	lh rd, off(rs1)	 	x[rd] = sext(M[x[rs1] + sext(off)][15:0])	{Off-I}	{001 0000011}
+lhu	RV32I,RV64I	lhu rd, off(rs1)	 	x[rd] = M[x[rs1] + sext(off)][15:0]	{Off-I}	{101 0000011}
+li	RV32I,RV64I	li rd, imm	RV32I: expands to lui and/or addi; RV64I: as long as lui, addi, slli, addi, slli, addi, slli, addi	x[rd] = immediate	{}	{}
+lla	RV32I,RV64I	lla rd, symbol	auipc rd, offsetHi; addi rd, rd, offsetLo	x[rd] = &symbol	{}	{}
+lr.d	RV64A	lr.d rd, (rs1)	 	x[rd] = LoadReserved64(M[x[rs1]])	{AMO-R}	{00010 aq rl 00000 rs1 011 rd 0101111}
+lr.w	RV32A,RV64A	lr.w rd, (rs1)	 	x[rd] = LoadReserved32(M[x[rs1]])	{AMO-R}	{00010 aq rl 00000 rs1 010 rd 0101111}
+lui	RV32I,RV64I	lui rd,imm	 	x[rd] = sext(imm[31:12] << 12)	{U}	{0110111}
+lw	RV32I,RV64I	lw rd, off(rs1)	 	x[rd] = sext(M[x[rs1] + sext(off)][31:0])	{Off-I}	{010 0000011}
+lwu	RV64I	lwu rd, off(rs1)	 	x[rd] = M[x[rs1] + sext(off)][31:0]	{Off-I}	{110 0000011}
+mret	RV32I,RV64I	mret	 	ExceptionReturn(Machine)	{R}	{0011000 00010 00000 000 00000 1110011}
+mul	RV32M,RV64M	mul rd, rs1, rs2	 	x[rd] = x[rs1] * x[rs2]	{R}	{0000001 000 0110011}
+mulh	RV32M,RV64M	mulh rd, rs1, rs2	 	x[rd] = (x[rs1] s*s x[rs2]) >>s XLEN	{R}	{0000001 001 0110011}
+mulhsu	RV32M,RV64M	mulhsu rd, rs1, rs2	 	x[rd] = (x[rs1] s*u x[rs2]) >>s XLEN	{R}	{0000001 010 0110011}
+mulhu	RV32M,RV64M	mulhu rd, rs1, rs2	 	x[rd] = (x[rs1] u*u x[rs2]) >>u XLEN	{R}	{0000001 011 0110011}
+mulw	RV32M,RV64M	mulw rd, rs1, rs2	 	x[rd] = sext((x[rs1] * x[rs2])[31:0])	{R}	{0000001 000 0111011}
+mv	RV32I,RV64I	mv rd, rs1	addi rd, rs1, 0	x[rd] = x[rs1]	{I}	{0 rs1 000 rd 0010011}
+neg	RV32I,RV64I	neg rd, rs2	sub rd, x0, rs2	x[rd] = -x[rs2]	{R}	{0100000 rs2 x0 000 rd 0110011}
+negw	RV64I	negw rd, rs2	subw rd, x0, rs2	x[rd] = sext((-x[rs2])[31:0])	{R}	{0100000 rs2 x0 000 rd 0111011}
+nop	RV32I,RV64I	nop	addi x0, x0, 0	Nothing	{I}	{000000000000 00000 000 00000 0010011}
+not	RV32I,RV64I	not rd, rs1	xori rd, rs1, -1	x[rd] = ~x[rs1]	{I}	{-1 rs1 100 rd 0010011}
+or	RV32I,RV64I	or rd, rs1, rs2	 	x[rd] = x[rs1] | x[rs2]	{R}	{0000000 110 0110011}
+ori	RV32I,RV64I	ori rd, rs1, imm	 	x[rd] = x[rs1] | sext(imm)	{I}	{110 0010011}
+rdcycle	RV32I,RV64I	rdcycle rd	csrrs rd, cycle, x0	x[rd] = CSRs[cycle]	{CSR-I}	{cycle x0 010 rd 1110011}
+rdcycleh	RV32I,RV64I	rdcycleh rd	csrrs rd, cycleh, x0	x[rd] = CSRs[cycleh]	{CSR-I}	{cycleh x0 010 rd 1110011}
+rdinstret	RV32I,RV64I	rdinstret rd	csrrs rd, instret, x0	x[rd] = CSRs[instret]	{CSR-I}	{instret x0 010 rd 1110011}
+rdinstreth	RV32I,RV64I	rdinstreth rd	csrrs rd, instreth, x0	x[rd] = CSRs[instreth]	{CSR-I}	{instret x0 010 rd 1110011}
+rdtime	RV32I,RV64I	rdtime rd	csrrs rd, time, x0	x[rd] = CSRs[time]	{CSR-I}	{time x0 010 rd 1110011}
+rdtimeh	RV32I,RV64I	rdtimeh rd	csrrs rd, timeh, x0	x[rd] = CSRs[timeh]	{CSR-I}	{timeh x0 010 rd 1110011}
+rem	RV32M,RV64M	rem rd, rs1, rs2	 	x[rd] = x[rs1] %s x[rs2]	{R}	{0000001 110 0110011}
+remu	RV32M,RV64M	remu rd, rs1, rs2	 	x[rd] = x[rs1] %u x[rs2]	{R}	{0000001 111 0110011}
+remuw	RV64M	remuw rd, rs1, rs2	 	x[rd] = sext(x[rs1][31:0] %u x[rs2][31:0])	{R}	{0000001 111 0111011}
+remw	RV64M	remw rd, rs1, rs2	 	x[rd] = sext(x[rs1][31:0] %s x[rs2][31:0])	{R}	{0000001 110 0111011}
+ret	RV32I,RV64I	ret	jalr x0, 0(x1)	pc = x[1]	{I}	{0 x1 000 x0 1100111}
+sb	RV32I,RV64I	sb rs2, offset(rs1)	 	M[x[rs1] + sext(offset)] = x[rs2][7:0]	{S}	{000 0100011}
+sc.d	RV32A,RV64A	sc.d rd, rs2, (rs1)	 	x[rd] = StoreConditional64(M[x[rs1]], x[rs2])	{AMO-R}	{00011 011}
+sc.w	RV32A,RV64A	sc.w rd, rs2, (rs1)	 	x[rd] = StoreConditional32(M[x[rs1]], x[rs2])	{AMO-R}	{00011 010}
+sd	RV64I	sd rs2, offset(rs1)	 	M[x[rs1] + sext(off)] = x[rs2][63:0]	{S}	{011 0100011}
+seqz	RV32I,RV64I	seqz rd, rs1	sltiu rd, rs1, 1	x[rd] = (x[rs1] == 0)	{I}	{1 rs1 011 rd 0010011}
+sext.w	RV64I	sext.w rd, rs1	addiw rd, rs1, 0	x[rd] = sext(x[rs1][31:0])	{I}	{0 rs1 000 rd 0011011}
+sfence.vma	RV32I,RV64I	sfence.vma rs1, rs2	 	Fence(Store, AddressTranslation)	{R}	{0001001 rs2 rs1 000 00000 1110011}
+sgtz	RV32I,RV64I	sgtz rs, rs2	slt rd, x0, rs2	x[rd] = (x[rs2] >s 0)	{R}	{000000 rs2 x0 010 rd 0110011}
+sh	RV32I,RV64I	sh rs2, off(rs1)	 	M[x[rs1] + sext(off)] = x[rs2][15:0]	{S}	{001 0100011}
+sh1add	Zba	sh1add rd, rs1, rs2	 	X(rd) = X(rs2) + (X(rs1) << 1)	{R}	{0010000 010 0110011}
+sll	RV32I,RV64I	sll rd, rs1, rs2	 	x[rd] = x[rs1] << x[rs2]	{R}	{0000000 001 0110011}
+slli	RV32I,RV64I	slli rd, rs1, shamt	 	x[rd] = x[rs1] << shamt	{Shift-I}	{000000 001 0010011}
+slliw	RV32I,RV64I	slliw rd, rs1, shamt	 	x[rd] = sext(x[rs1] << shamt)[31:0]	{Shift-I}	{000000 001 0011011}
+sllw	RV64I	sllw rd, rs1, rs2	 	x[rd] = sext((x[rs1] << x[rs2][4:0])[31:0])	{R}	{000000 001 0111011}
+slt	RV32I,RV64I	slt rd, rs1, rs2	 	x[rd] = x[rs1] <s x[rs2]	{R}	{000000 010 0110011}
+slti	RV32I,RV64I	slti rd, rs1, imm	 	x[rd] = x[rs1] <s sext(imm)	{I}	{010 0010011}
+sltiu	RV32I,RV64I	sltiu rd, rs1, imm	 	x[rd] = x[rs1] <u sext(imm)	{I}	{011 0010011}
+sltu	RV32I,RV64I	sltu rd, rs1, rs2	 	x[rd] = x[rs1] <u x[rs2]	{R}	{000000 011 0110011}
+sltz	RV32I,RV64I	sltz rd, rs1, rs2	slt rd, rs1, x0	x[rd] = (x[rs1] <s 0)	{R}	{000000 x0 rs1 010 rd 0110011}
+snez	RV32I,RV64I	snez rd, rs2	sltu rd, x0, rs2	x[rd] = (x[rs2] != 0)	{R}	{000000 rs2 x0 011 rd 0110011}
+sra	RV32I,RV64I	sra rd, rs1, rs2	 	x[rd] = x[rs1] >>s x[rs2]	{R}	{0100000 101 0110011}
+srai	RV32I,RV64I	srai rd, rs1, shamt	 	x[rd] = x[rs1] >>s shamt	{Shift-I}	{010000 101 0010011}
+sraiw	RV64I	sraiw rd, rs1, shamt	 	x[rd] = sext(x[rs1][31:0] >>s shamt)	{Shift-I}	{010000 101 0011011}
+sraw	RV64I	sraw rd, rs1, rs2	 	x[rd] = sext(x[rs1][31:0] >>s x[rs2][4:0])	{R}	{0100000 101 0111011}
+sret	RV32I,RV64I	sret	 	ExceptionReturn(Supervisor)	{R}	{0001000 00010 00000 000 00000 1110011}
+srl	RV32I,RV64I	srl rd, rs1, rs2	 	x[rd] = x[rs1] >>u x[rs2]	{R}	{0000000 101 0110011}
+srli	RV32I,RV64I	srli rd, rs1, shamt	 	x[rd] = x[rs1] >>u shamt	{Shift-I}	{000000 101 0010011}
+srliw	RV64I	srliw rd, rs1, shamt	 	x[rd] = sext(x[rs1][31:0] >>u shamt)	{Shift-I}	{000000 101 0011011}
+srlw	RV64I	srlw rd, rs1, rs2	 	x[rd] = sext(x[rs1][31:0] >>u x[rs2][4:0])	{R}	{0000000 101 0111011}
+sub	RV32I,RV64I	sub rd, rs1, rs2	 	x[rd] = x[rs1] - x[rs2]	{R}	{0100000 000 0110011}
+subw	RV64I	subw rd, rs1, rs2	 	x[rd] = sext(x[rs1] - x[rs2])[31:0]	{R}	{0100000 000 0111011}
+sw	RV32I,RV64I	sw rs2, offset(rs1)	 	M[x[rs1] + sext(off)] = x[rs2][31:0]	{S}	{010 0100011}
+tail	RV32I,RV64I	tail symbol	auipc x6, offsetHi; jalr x0, offsetLo(x6)	pc = &symbol; clobber x[6]	{}	{}
+wfi	RV32I,RV64I	wfi	 	while (noInterruptsPending) idle	{R}	{0001000 00101 00000 000 00000 1110011}
+xor	RV32I,RV64I	xor rd, rs1, rs2	 	x[rd] = x[rs1] ˆ x[rs2]	{R}	{0000000 100 0110011}
+xori	RV32I,RV64I	xori rd, rs1, imm	 	x[rd] = x[rs1] ˆ sext(imm)	{I}	{100 0010011}

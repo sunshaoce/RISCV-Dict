@@ -1,8 +1,6 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-#define DEBUG
-
 #include <string>
 #include <vector>
 

@@ -18,3 +18,4 @@ zimm:   zero-extended immediate
 shamt:  shift amount
 
 off:    offset
+rd=x0:  If rd is omitted, x0 is assumed.

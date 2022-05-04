@@ -1,5 +1,7 @@
 #include "Instruction.h"
 
+// #define DEBUG
+
 using namespace std;
 
 string Instruction::printChart() {
