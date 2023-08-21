@@ -177,7 +177,7 @@ reload:
   unordered_map<string, Instruction> Insts;
 
   if (Args.size() == 1)
-    Args.push_back("Instructions.csv");
+    Args.push_back("../csv/Instructions.csv");
   ifstream InstFile(Args[1]);
   if (InstFile.fail()) {
     cerr << "ERROR: can't find file " << Args[1] << endl;
